@@ -1,0 +1,38 @@
+package cn.bugstack.ai.domain.agent.service.armory.node;
+
+import cn.bugstack.ai.domain.agent.model.entity.ArmoryCommandEntity;
+import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVo;
+import cn.bugstack.ai.domain.agent.model.valobj.AiAgentRegisterVO;
+import cn.bugstack.ai.domain.agent.service.armory.AbstractArmorySupport;
+import cn.bugstack.ai.domain.agent.service.armory.factory.DefaultArmoryFactory;
+import cn.bugstack.wrench.design.framework.tree.StrategyHandler;
+import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+/**
+ * @author Wxh
+ * @date 2026年05月02日 21:37
+ */
+@Slf4j
+@Service
+public class RootNode extends AbstractArmorySupport {
+
+    @Resource
+    private ApiNode apinode;
+
+    @Override
+    protected AiAgentRegisterVO doApply(ArmoryCommandEntity armoryCommandEntity, DefaultArmoryFactory.DynamicContext dynamicContext) throws Exception {
+
+        AiAgentConfigTableVo aiAgentConfigTableVo = armoryCommandEntity.getAiAgentConfigTableVo();
+        AiAgentConfigTableVo.Agent agent = aiAgentConfigTableVo.getAgent();
+
+        // /
+        return router(armoryCommandEntity, dynamicContext);
+    }
+
+    @Override
+    public StrategyHandler<ArmoryCommandEntity, DefaultArmoryFactory.DynamicContext, AiAgentRegisterVO> get(ArmoryCommandEntity armoryCommandEntity, DefaultArmoryFactory.DynamicContext dynamicContext) throws Exception {
+        return apinode;
+    }
+}
