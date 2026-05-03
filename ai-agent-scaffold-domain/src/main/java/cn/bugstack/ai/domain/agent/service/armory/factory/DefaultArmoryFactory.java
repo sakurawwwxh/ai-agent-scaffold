@@ -10,7 +10,9 @@ import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.openai.api.OpenAiApi;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -34,6 +36,8 @@ public class DefaultArmoryFactory {
         private Map<String, BaseAgent> agentGroup = new HashMap<>();
 
         private Map<String,Object> dataObjects = new HashMap<>();
+
+        private List<AiAgentConfigTableVo.Module.AgentWorkflow> agentWorkflows = new ArrayList<>();
 
         public <T> void setValue(String key, T value) {
             dataObjects.put(key,value);
