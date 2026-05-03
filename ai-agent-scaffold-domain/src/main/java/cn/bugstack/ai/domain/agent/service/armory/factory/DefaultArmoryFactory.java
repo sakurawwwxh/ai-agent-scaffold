@@ -1,6 +1,7 @@
 package cn.bugstack.ai.domain.agent.service.armory.factory;
 
 import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVo;
+import com.google.adk.agents.BaseAgent;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,6 +30,8 @@ public class DefaultArmoryFactory {
         private OpenAiApi openAiApi;
 
         private ChatModel chatModel;
+
+        private Map<String, BaseAgent> agentGroup = new HashMap<>();
 
         private Map<String,Object> dataObjects = new HashMap<>();
 
