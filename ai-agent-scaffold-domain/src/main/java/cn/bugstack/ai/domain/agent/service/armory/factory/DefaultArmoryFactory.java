@@ -42,8 +42,7 @@ public class DefaultArmoryFactory {
         private OpenAiApi openAiApi;
 
         private ChatModel chatModel;
-
-        private SequentialAgent sequentialAgent;
+        
 
 
         /***
