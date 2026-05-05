@@ -44,9 +44,10 @@ public class RunnerNode extends AbstractArmorySupport {
                 .runner(runner)
                 .build();
 
+        //注册到spring容器
         registerBean(agentId,AiAgentRegisterVO.class,aiAgentRegisterVO);
 
-        return null;
+        return aiAgentRegisterVO;
     }
 
     @Override

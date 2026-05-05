@@ -5,28 +5,28 @@ ai:
         testAgent01:
           app-name: testAgent01
           agent:
-            agent-id: 100001
-            agent-name: 测试智能体01
-            agent-desc: 一个测试的智能体
+            agent-id: 100002
+            agent-name: 智能体01
+            agent-desc: 一个日常的智能体
           module:
             ai-api:
-              base-url: https://api.minimax.io/v1
-              api-key: sk-cp-D_ZGAKG1PrCOKdA1ANa-Uk4tVSb2lzLo4tPYrKUj8b5lx-u-Yz6aw-i6dqtJUAcZgweOgy6G6Pk7By1mbgm-lmgeXue_JkH9RW37b4Mhq2ttG7xWPtzwqeY
+              base-url: https://token-plan-cn.xiaomimimo.com
+              api-key: tp-ca9aehqfzwl9pc2iudxasxqbjb6o1chf70lbuuh4vwsiibw5
               completions-path: v1/chat/completions
               embeddings-path: v1/embeddings
             chat-model:
-              model: MiniMax-M2.7
+              model: mimo-v2.5-pro
               tool-mcp-list:
-                - sse:
-                    name: baidu-search
-                    base-uri: http://appbuilder.baidu.com/v2/ai_search/mcp/
-                    sse-endpoint: sse?api_key=bce-v3/ALTAK-3zODLb9qHozIftQlGwez5/2696e92781f5bf1ba1870e2958f239fd6dc822a4
-                    request-timeout: 5000
+                # - sse:
+                #     name: baidu-search
+                #     base-uri: http://appbuilder.baidu.com/v2/ai_search/mcp/
+                #     sse-endpoint: sse?api_key=bce-v3/ALTAK-1zNolBHdTIbVIDfBbsrXq/10dbd6ce44443026e2e04f003752f0be9cf61ad8
+                #     request-timeout: 5000
                 - sse:
                     name: baidu-map
                     base-uri: https://mcp.map.baidu.com/
                     sse-endpoint: sse?ak=tV0NsP4Gmj8IL7mhvyjVZ7c6
-                    request-timeout: 5000
+                    request-timeout: 30000
             agents:
               - name: CodeWriterAgent
                 description: Writes initial Java code based on a specification.

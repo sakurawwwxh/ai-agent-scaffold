@@ -1,6 +1,10 @@
 package cn.bugstack.ai.domain.agent.service.armory.factory;
 
+import cn.bugstack.ai.domain.agent.model.entity.ArmoryCommandEntity;
 import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVo;
+import cn.bugstack.ai.domain.agent.model.valobj.AiAgentRegisterVO;
+import cn.bugstack.ai.domain.agent.service.armory.node.RootNode;
+import cn.bugstack.wrench.design.framework.tree.StrategyHandler;
 import com.google.adk.agents.BaseAgent;
 import com.google.adk.agents.SequentialAgent;
 import lombok.AllArgsConstructor;
@@ -11,6 +15,7 @@ import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.openai.api.OpenAiApi;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.*;
 
 /**
@@ -19,6 +24,13 @@ import java.util.*;
  */
 @Service
 public class DefaultArmoryFactory {
+
+    @Resource
+    private RootNode rootNode;
+
+    public StrategyHandler<ArmoryCommandEntity, DynamicContext, AiAgentRegisterVO> armoryStrategyHandler() {
+        return rootNode;
+    }
 
 
     @Data
@@ -68,5 +80,6 @@ public class DefaultArmoryFactory {
 
             return agentList;
         }
+
     }
 }

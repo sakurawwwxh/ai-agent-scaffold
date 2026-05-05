@@ -12,7 +12,7 @@ public enum AgentTypeEnum {
 
     Loop("循环执行", "loop", "loopAgentNode"),
     Parallel("并行执行", "parallel", "parallelAgentNode"),
-    Sequential("串行执行", "Sequential", "sequentialAgentNode"),
+    Sequential("串行执行", "sequential", "sequentialAgentNode"),
 
     ;
 
@@ -25,7 +25,7 @@ public enum AgentTypeEnum {
         if (type == null) return null;
 
         for (AgentTypeEnum value : AgentTypeEnum.values()) {
-            if (value.getType().equals(type)) {
+            if (value.getType().equalsIgnoreCase(type)) {
                 return value;
             }
         }

@@ -48,7 +48,7 @@ public class AgentWorkflowNode extends AbstractArmorySupport {
 
         dynamicContext.setAgentWorkflows(agentWorkflows);
 
-        return null;
+        return router(armoryCommandEntity, dynamicContext);
     }
 
     @Override
