@@ -45,11 +45,18 @@ public class AgentWorkflowNode extends AbstractArmorySupport {
         AiAgentConfigTableVo aiAgentConfigTableVo = armoryCommandEntity.getAiAgentConfigTableVo();
         List<AiAgentConfigTableVo.Module.AgentWorkflow> agentWorkflows = aiAgentConfigTableVo.getModule().getAgentWorkflows();
 
-        if (null==agentWorkflows || agentWorkflows.isEmpty()){
+        if (null==agentWorkflows || agentWorkflows.isEmpty() || dynamicContext.getCurrentStepIndex() >= agentWorkflows.size()){
+
+            //设置结果值
+            dynamicContext.setCurrentAgentWorkflow(null);
+            //路由下节点
             return router(armoryCommandEntity, dynamicContext);
         }
 
-        dynamicContext.setAgentWorkflows(agentWorkflows);
+        dynamicContext.setCurrentAgentWorkflow(agentWorkflows.get(dynamicContext.getCurrentStepIndex()));
+
+        //步骤值增加
+        dynamicContext.addCurrentStepIndex();
 
         return router(armoryCommandEntity, dynamicContext);
     }
@@ -57,15 +64,15 @@ public class AgentWorkflowNode extends AbstractArmorySupport {
     @Override
     public StrategyHandler<ArmoryCommandEntity, DefaultArmoryFactory.DynamicContext, AiAgentRegisterVO> get(ArmoryCommandEntity armoryCommandEntity, DefaultArmoryFactory.DynamicContext dynamicContext) throws Exception {
 
-        List<AiAgentConfigTableVo.Module.AgentWorkflow> agentWorkflows = dynamicContext.getAgentWorkflows();
 
-        if (null==agentWorkflows || agentWorkflows.isEmpty()){
+        AiAgentConfigTableVo.Module.AgentWorkflow currentAgentWorkflow = dynamicContext.getCurrentAgentWorkflow();
+
+        if (null==currentAgentWorkflow){
             return runnerNode;
         }
 
-        AiAgentConfigTableVo.Module.AgentWorkflow agentWorkflow = agentWorkflows.get(0);
 
-        String type = agentWorkflow.getType();
+        String type = currentAgentWorkflow.getType();
         AgentTypeEnum agentTypeEnum = AgentTypeEnum.fromType(type);
 
         if (null == agentTypeEnum){
@@ -78,7 +85,7 @@ public class AgentWorkflowNode extends AbstractArmorySupport {
             case "loopAgentNode" -> loopAgentNode;
             case "parallelAgentNode" -> parallelAgentNode;
             case "sequentialAgentNode" -> sequentialAgentNode;
-            default -> throw new RuntimeException("AgentWorkflows node is not support");
+            default -> runnerNode;
         };
     }
 }

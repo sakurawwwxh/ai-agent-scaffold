@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author Wxh
@@ -53,7 +54,10 @@ public class DefaultArmoryFactory {
 
         private Map<String,Object> dataObjects = new HashMap<>();
 
-        private List<AiAgentConfigTableVo.Module.AgentWorkflow> agentWorkflows = new ArrayList<>();
+
+        private AtomicInteger currentStepIndex = new AtomicInteger(0);
+
+        private AiAgentConfigTableVo.Module.AgentWorkflow currentAgentWorkflow;
 
         public <T> void setValue(String key, T value) {
             dataObjects.put(key,value);
@@ -78,6 +82,15 @@ public class DefaultArmoryFactory {
             }
 
             return agentList;
+        }
+
+
+        public void addCurrentStepIndex(){
+            currentStepIndex.incrementAndGet();
+        }
+
+        public int getCurrentStepIndex(){
+            return currentStepIndex.get();
         }
 
     }

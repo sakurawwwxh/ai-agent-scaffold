@@ -26,51 +26,28 @@ public class LoopAgentNode extends AbstractArmorySupport {
 
         log.info("Ai Agent 装配操作 - LoopAgentNode");
 
-        List<AiAgentConfigTableVo.Module.AgentWorkflow> agentWorkflows = dynamicContext.getAgentWorkflows();
+        AiAgentConfigTableVo.Module.AgentWorkflow currentAgentWorkflow = dynamicContext.getCurrentAgentWorkflow();
 
-        AiAgentConfigTableVo.Module.AgentWorkflow agentWorkflow= agentWorkflows.remove(0);
 
-        List<String> subAgentNames = agentWorkflow.getSubAgents();
+        List<String> subAgentNames = currentAgentWorkflow.getSubAgents();
         List<BaseAgent> subAgents = dynamicContext.queryAgentList(subAgentNames);
 
 
         LoopAgent loopAgent =
                 LoopAgent.builder()
-                        .name(agentWorkflow.getName())
-                        .description(agentWorkflow.getDescription())
+                        .name(currentAgentWorkflow.getName())
+                        .description(currentAgentWorkflow.getDescription())
                         .subAgents(subAgents)
-                        .maxIterations(agentWorkflow.getMaxIterations())
+                        .maxIterations(currentAgentWorkflow.getMaxIterations())
                         .build();
 
-        dynamicContext.getAgentGroup().put(agentWorkflow.getName(), loopAgent);
+        dynamicContext.getAgentGroup().put(currentAgentWorkflow.getName(), loopAgent);
 
         return router(armoryCommandEntity, dynamicContext);
     }
 
     @Override
     public StrategyHandler<ArmoryCommandEntity, DefaultArmoryFactory.DynamicContext, AiAgentRegisterVO> get(ArmoryCommandEntity armoryCommandEntity, DefaultArmoryFactory.DynamicContext dynamicContext) throws Exception {
-
-        List<AiAgentConfigTableVo.Module.AgentWorkflow> agentWorkflows = dynamicContext.getAgentWorkflows();
-
-        if (null==agentWorkflows|| agentWorkflows.isEmpty()){
-            return defaultStrategyHandler;
-        }
-
-        AiAgentConfigTableVo.Module.AgentWorkflow agentWorkflow = agentWorkflows.get(0);
-
-        String type = agentWorkflow.getType();
-        AgentTypeEnum agentTypeEnum = AgentTypeEnum.fromType(type);
-
-        if (null == agentTypeEnum){
-            throw new RuntimeException("AgentWorkflows type is not support");
-        }
-
-        String node = agentTypeEnum.getNode();
-
-        return switch (node) {
-            case "parallelAgentNode" -> getBean("parallelAgentNode");
-            case "sequentialAgentNode" -> getBean("sequentialAgentNode");
-            default -> defaultStrategyHandler;
-        };
+        return getBean("agentWorkflowNode");
     }
 }

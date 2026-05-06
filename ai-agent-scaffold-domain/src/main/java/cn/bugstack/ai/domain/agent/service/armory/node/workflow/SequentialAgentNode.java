@@ -33,32 +33,32 @@ public class SequentialAgentNode extends AbstractArmorySupport {
 
         log.info("Ai Agent 装配操作 - sequentialAgentNode");
 
-        List<AiAgentConfigTableVo.Module.AgentWorkflow> agentWorkflows = dynamicContext.getAgentWorkflows();
+        AiAgentConfigTableVo.Module.AgentWorkflow currentAgentWorkflow = dynamicContext.getCurrentAgentWorkflow();
 
-        AiAgentConfigTableVo.Module.AgentWorkflow agentWorkflow= agentWorkflows.remove(0);
 
-        List<String> subAgentNames = agentWorkflow.getSubAgents();
+        List<String> subAgentNames = currentAgentWorkflow.getSubAgents();
         List<BaseAgent> subAgents = dynamicContext.queryAgentList(subAgentNames);
-
 
         SequentialAgent sequentialAgent =
                 SequentialAgent.builder()
-                        .name(agentWorkflow.getName())
-                        .description(agentWorkflow.getDescription())
+                        .name(currentAgentWorkflow.getName())
+                        .description(currentAgentWorkflow.getDescription())
                         .subAgents(subAgents)
                         .build();
 
         //设置到上下文对象中去使用
 //        dynamicContext.setSequentialAgent(sequentialAgent);
 
+        dynamicContext.getAgentGroup().put(currentAgentWorkflow.getName(), sequentialAgent);
+
         //注册到spring容器
-        registerBean(agentWorkflow.getName(), SequentialAgent.class, sequentialAgent);
+//        registerBean(agentWorkflow.getName(), SequentialAgent.class, sequentialAgent);
 
         return router(armoryCommandEntity, dynamicContext);
     }
 
     @Override
     public StrategyHandler<ArmoryCommandEntity, DefaultArmoryFactory.DynamicContext, AiAgentRegisterVO> get(ArmoryCommandEntity armoryCommandEntity, DefaultArmoryFactory.DynamicContext dynamicContext) throws Exception {
-        return runnerNode;
+        return getBean("agentWorkflowNode");
     }
 }
