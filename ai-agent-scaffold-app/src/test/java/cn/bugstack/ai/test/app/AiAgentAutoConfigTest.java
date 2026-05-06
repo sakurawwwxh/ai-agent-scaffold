@@ -77,7 +77,7 @@ public class AiAgentAutoConfigTest {
                 .createSession(appName, "tomato")
                 .blockingGet();
 
-        Content userMessage = Content.fromParts(Part.fromText("给我一份学习计划"));
+        Content userMessage = Content.fromParts(Part.fromText("把tomato转换为大写"));
         Flowable<Event> events = runner.runAsync("tomato", session.id(), userMessage);
 
         List<String> outPuts = new ArrayList<>();

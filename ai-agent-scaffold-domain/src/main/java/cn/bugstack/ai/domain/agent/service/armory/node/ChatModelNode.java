@@ -5,6 +5,8 @@ import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVo;
 import cn.bugstack.ai.domain.agent.model.valobj.AiAgentRegisterVO;
 import cn.bugstack.ai.domain.agent.service.armory.AbstractArmorySupport;
 import cn.bugstack.ai.domain.agent.service.armory.factory.DefaultArmoryFactory;
+import cn.bugstack.ai.domain.agent.service.armory.mcp.client.ToolMcpCreateService;
+import cn.bugstack.ai.domain.agent.service.armory.mcp.client.factory.DefaultMcpClientFactory;
 import cn.bugstack.wrench.design.framework.tree.StrategyHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.networknt.schema.utils.StringUtils;
@@ -25,6 +27,7 @@ import org.springframework.ai.mcp.SyncMcpToolCallbackProvider;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.ai.openai.api.OpenAiApi;
+import org.springframework.ai.tool.ToolCallback;
 import org.springframework.stereotype.Service;
 
 import java.net.MalformedURLException;
@@ -44,38 +47,43 @@ public class ChatModelNode extends AbstractArmorySupport {
     @Resource
     private AgentNode agentNode;
 
+    @Resource
+    private DefaultMcpClientFactory defaultMcpClientFactory;
+
     @Override
     protected AiAgentRegisterVO doApply(ArmoryCommandEntity armoryCommandEntity, DefaultArmoryFactory.DynamicContext dynamicContext) throws Exception {
 
         log.info("Ai Agent 装配操作 - ChatModelNode");
 
+        //获取上下文对象
         OpenAiApi openAiApi = dynamicContext.getOpenAiApi();
 
+        ////获取配置对象
         AiAgentConfigTableVo aiAgentConfigTableVo = armoryCommandEntity.getAiAgentConfigTableVo();
         AiAgentConfigTableVo.Module.ChatModel chatModelConfig = aiAgentConfigTableVo.getModule().getChatModel();
-
-        List<McpSyncClient> mcpSyncClients = new ArrayList<>();
-
         List<AiAgentConfigTableVo.Module.ChatModel.ToolMcp> toolMcpList = chatModelConfig.getToolMcpList();
 
-        
-        for (AiAgentConfigTableVo.Module.ChatModel.ToolMcp toolMcp : toolMcpList){
-            mcpSyncClients.add(createMcpSyncClient(toolMcp));
+
+        //构建mcp服务(工厂)
+        List<ToolCallback> toolCallbackList = new ArrayList<>();
+        for (AiAgentConfigTableVo.Module.ChatModel.ToolMcp toolMcp:toolMcpList) {
+            ToolMcpCreateService toolMcpCreateService = defaultMcpClientFactory.getToolMcpCreateService(toolMcp);
+            ToolCallback[] toolCallbacks = toolMcpCreateService.buildToolCallback(toolMcp);
+            toolCallbackList.addAll(List.of(toolCallbacks));
         }
 
+        //构建对话模型
         ChatModel chatModel = OpenAiChatModel.builder()
                 .openAiApi(openAiApi)
                 .defaultOptions(OpenAiChatOptions.builder()
                         .model(chatModelConfig.getModel())
-                        .toolCallbacks(SyncMcpToolCallbackProvider.builder()
-                                .mcpClients(mcpSyncClients).build()
-                                .getToolCallbacks())
+                        .toolCallbacks(toolCallbackList)
                         .build())
                 .build();
 
         dynamicContext.setChatModel(chatModel);
 
-        return router(armoryCommandEntity, dynamicContext);
+         return router(armoryCommandEntity, dynamicContext);
     }
 
     @Override
@@ -84,79 +92,6 @@ public class ChatModelNode extends AbstractArmorySupport {
     }
 
 
-    private McpSyncClient createMcpSyncClient(AiAgentConfigTableVo.Module.ChatModel.ToolMcp toolMcp) throws Exception {
-
-        AiAgentConfigTableVo.Module.ChatModel.ToolMcp.SSEServerParameters sseConfig = toolMcp.getSse();
-
-        AiAgentConfigTableVo.Module.ChatModel.ToolMcp.StdioServerParameters stdioConfig = toolMcp.getStdio();
-
-        if (sseConfig != null) {
-
-            String originalBaseUri = sseConfig.getBaseUri();
-            String baseUri = originalBaseUri;
-            String sseEndpoint = sseConfig.getSseEndpoint();
-
-
-            if (StringUtils.isBlank(sseEndpoint)) {
-                URL url = new URL(originalBaseUri);
-
-                String protocol = url.getProtocol();
-                String host = url.getHost();
-                int port = url.getPort();
-
-                String baseUrl = port == -1 ? protocol + "://" + host : protocol + "://" + host + ":" + port;
-
-
-                int index = originalBaseUri.indexOf(baseUrl);
-                if (index != -1) {
-                    sseEndpoint = originalBaseUri.substring(index + baseUrl.length());
-                }
-
-                baseUri = baseUrl;
-            }
-
-            sseEndpoint = StringUtils.isBlank(sseEndpoint) ? "/sse" : sseEndpoint;
-
-            HttpClientSseClientTransport sseClientTransport = HttpClientSseClientTransport
-                    .builder(baseUri)
-                    .sseEndpoint(sseEndpoint)
-                    .build();
-
-
-            McpSyncClient mcpSyncClient = McpClient.sync(sseClientTransport).requestTimeout(Duration.ofMillis(sseConfig.getRequestTimeout())).build();
-
-            McpSchema.InitializeResult initialize = mcpSyncClient.initialize();
-
-            log.info("tool sse mcp initialize 成功: {}", initialize);
-
-            return mcpSyncClient;
-
-        }
-
-        if (stdioConfig != null){
-
-            AiAgentConfigTableVo.Module.ChatModel.ToolMcp.StdioServerParameters.ServerParameters serverParameters = stdioConfig.getServerParameters();
-
-            ServerParameters stdioParams = ServerParameters
-                    .builder(serverParameters.getCommand())
-                    .args(serverParameters.getArgs())
-                    .env(serverParameters.getEnv())
-                    .build();
-
-            McpSyncClient mcpSyncClient = McpClient
-                    .sync(new StdioClientTransport(stdioParams, new JacksonMcpJsonMapper(new ObjectMapper())))
-                    .requestTimeout(Duration.ofMillis(stdioConfig.getRequestTimeout()))
-                    .build();
-
-            McpSchema.InitializeResult initialize = mcpSyncClient.initialize();
-
-            log.info("tool stdio mcp initialize 成功: {}", initialize);
-
-            return mcpSyncClient;
-        }
-
-       throw new RuntimeException("tool mcp 配置异常");
-    }
 
 
 }

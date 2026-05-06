@@ -1,0 +1,36 @@
+package cn.bugstack.ai.domain.agent.service.armory.mcp.client.impl;
+
+import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVo;
+import cn.bugstack.ai.domain.agent.service.armory.mcp.client.ToolMcpCreateService;
+import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.ai.tool.ToolCallback;
+import org.springframework.ai.tool.ToolCallbackProvider;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
+
+/**
+ * @author Wxh
+ * @date 2026年05月06日 15:55
+ */
+@Slf4j
+@Service
+public class LocalToolMcpCreateService implements ToolMcpCreateService {
+
+    @Resource
+    protected ApplicationContext applicationContext;
+
+
+    @Override
+    public ToolCallback[] buildToolCallback(AiAgentConfigTableVo.Module.ChatModel.ToolMcp toolMcp) {
+
+        AiAgentConfigTableVo.Module.ChatModel.ToolMcp.LocalParameters local = toolMcp.getLocal();
+        String name = local.getName();
+
+        ToolCallbackProvider localToolCallbackProvider = (ToolCallbackProvider) applicationContext.getBean(local.getName());
+
+        log.info("tool local mcp initialize 成功: {}", name);
+
+        return localToolCallbackProvider.getToolCallbacks();
+    }
+}
