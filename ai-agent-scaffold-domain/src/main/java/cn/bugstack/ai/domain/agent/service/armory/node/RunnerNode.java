@@ -10,12 +10,17 @@ import cn.bugstack.ai.types.exception.AppException;
 import cn.bugstack.wrench.design.framework.tree.StrategyHandler;
 import com.google.adk.agents.BaseAgent;
 import com.google.adk.agents.SequentialAgent;
+import com.google.adk.plugins.BasePlugin;
 import com.google.adk.runner.InMemoryRunner;
+import com.google.common.collect.ImmutableList;
 import com.networknt.schema.utils.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.ApplicationContextException;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Wxh
@@ -56,9 +61,10 @@ public class RunnerNode extends AbstractArmorySupport {
         return aiAgentRegisterVO;
     }
 
-    @NotNull
-    private static InMemoryRunner getInMemoryRunner(DefaultArmoryFactory.DynamicContext dynamicContext, AiAgentConfigTableVo aiAgentConfigTableVo, String appName) {
+
+    private  InMemoryRunner getInMemoryRunner(DefaultArmoryFactory.DynamicContext dynamicContext, AiAgentConfigTableVo aiAgentConfigTableVo, String appName) {
         AiAgentConfigTableVo.Module.Runner runnerConfig = aiAgentConfigTableVo.getModule().getRunner();
+
 
         String agentName = runnerConfig.getAgentName();
         if (StringUtils.isBlank(agentName)){
@@ -66,9 +72,23 @@ public class RunnerNode extends AbstractArmorySupport {
             throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(),ResponseCode.ILLEGAL_PARAMETER.getInfo());
         }
 
+
         BaseAgent baseAgent = dynamicContext.getAgentGroup().get(runnerConfig.getAgentName());
 
-        InMemoryRunner runner = new InMemoryRunner(baseAgent, appName);
+        List<BasePlugin> plugins;
+        List<String> pluginNameList = runnerConfig.getPluginNameList();
+
+        if (null != pluginNameList && !pluginNameList.isEmpty()) {
+            plugins = new ArrayList<>();
+            for (String pluginName : pluginNameList) {
+                BasePlugin plugin = getBean(pluginName);
+                plugins.add(plugin);
+            }
+        } else {
+            plugins = ImmutableList.of();
+        }
+
+        InMemoryRunner runner = new InMemoryRunner(baseAgent, appName,plugins);
         return runner;
     }
 

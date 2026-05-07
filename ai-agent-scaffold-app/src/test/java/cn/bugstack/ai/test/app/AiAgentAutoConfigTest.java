@@ -21,6 +21,7 @@ import cn.bugstack.ai.domain.agent.model.valobj.properties.AiAgentAutoConfigProp
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Wxh
@@ -82,6 +83,8 @@ public class AiAgentAutoConfigTest {
 
         List<String> outPuts = new ArrayList<>();
         events.blockingForEach(event -> outPuts.add(event.stringifyContent()));
+
+        
 
         log.info("测试结果: {}", JSON.toJSONString(outPuts));
     }

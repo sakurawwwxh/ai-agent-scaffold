@@ -1,10 +1,10 @@
-package cn.bugstack.ai.domain.agent.service.armory.mcp.client.factory;
+package cn.bugstack.ai.domain.agent.service.armory.matter.mcp.client.factory;
 
 import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVo;
-import cn.bugstack.ai.domain.agent.service.armory.mcp.client.ToolMcpCreateService;
-import cn.bugstack.ai.domain.agent.service.armory.mcp.client.impl.LocalToolMcpCreateService;
-import cn.bugstack.ai.domain.agent.service.armory.mcp.client.impl.SSEToolMcpCreateService;
-import cn.bugstack.ai.domain.agent.service.armory.mcp.client.impl.StdioToolMcpCreateService;
+import cn.bugstack.ai.domain.agent.service.armory.matter.mcp.client.ToolMcpCreateService;
+import cn.bugstack.ai.domain.agent.service.armory.matter.mcp.client.impl.LocalToolMcpCreateService;
+import cn.bugstack.ai.domain.agent.service.armory.matter.mcp.client.impl.SSEToolMcpCreateService;
+import cn.bugstack.ai.domain.agent.service.armory.matter.mcp.client.impl.StdioToolMcpCreateService;
 import cn.bugstack.ai.types.enums.ResponseCode;
 import cn.bugstack.ai.types.exception.AppException;
 import jakarta.annotation.Resource;
@@ -24,10 +24,10 @@ public class DefaultMcpClientFactory {
     private LocalToolMcpCreateService localToolMcpCreateService;
 
     @Resource
-    private SSEToolMcpCreateService  sseToolMcpCreateService;
+    private SSEToolMcpCreateService sseToolMcpCreateService;
 
     @Resource
-    private StdioToolMcpCreateService  stdioToolMcpCreateService;
+    private StdioToolMcpCreateService stdioToolMcpCreateService;
 
     public ToolMcpCreateService getToolMcpCreateService(AiAgentConfigTableVo.Module.ChatModel.ToolMcp toolMcp){
         if (null!= toolMcp.getLocal()) return localToolMcpCreateService;

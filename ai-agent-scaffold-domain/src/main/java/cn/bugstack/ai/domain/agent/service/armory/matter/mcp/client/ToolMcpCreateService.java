@@ -1,4 +1,4 @@
-package cn.bugstack.ai.domain.agent.service.armory.mcp.client;
+package cn.bugstack.ai.domain.agent.service.armory.matter.mcp.client;
 
 import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVo;
 import org.springframework.ai.tool.ToolCallback;
