@@ -1,6 +1,6 @@
 package cn.bugstack.ai.domain.agent.service.armory.matter.mcp.client.factory;
 
-import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVo;
+import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVO;
 import cn.bugstack.ai.domain.agent.service.armory.matter.mcp.client.ToolMcpCreateService;
 import cn.bugstack.ai.domain.agent.service.armory.matter.mcp.client.impl.LocalToolMcpCreateService;
 import cn.bugstack.ai.domain.agent.service.armory.matter.mcp.client.impl.SSEToolMcpCreateService;
@@ -29,7 +29,7 @@ public class DefaultMcpClientFactory {
     @Resource
     private StdioToolMcpCreateService stdioToolMcpCreateService;
 
-    public ToolMcpCreateService getToolMcpCreateService(AiAgentConfigTableVo.Module.ChatModel.ToolMcp toolMcp){
+    public ToolMcpCreateService getToolMcpCreateService(AiAgentConfigTableVO.Module.ChatModel.ToolMcp toolMcp){
         if (null!= toolMcp.getLocal()) return localToolMcpCreateService;
         if (null!= toolMcp.getSse()) return sseToolMcpCreateService;
         if (null != toolMcp.getStdio()) return stdioToolMcpCreateService;

@@ -1,13 +1,13 @@
 package cn.bugstack.ai.domain.agent.service.armory.matter.mcp.client.impl;
 
-import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVo;
+import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVO;
 import cn.bugstack.ai.domain.agent.service.armory.matter.mcp.client.ToolMcpCreateService;
-import com.networknt.schema.utils.StringUtils;
 import io.modelcontextprotocol.client.McpClient;
 import io.modelcontextprotocol.client.McpSyncClient;
 import io.modelcontextprotocol.client.transport.HttpClientSseClientTransport;
 import io.modelcontextprotocol.spec.McpSchema;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.ai.mcp.SyncMcpToolCallbackProvider;
 import org.springframework.ai.tool.ToolCallback;
 import org.springframework.stereotype.Service;
@@ -23,9 +23,9 @@ import java.time.Duration;
 @Service
 public class SSEToolMcpCreateService implements ToolMcpCreateService {
     @Override
-    public ToolCallback[] buildToolCallback(AiAgentConfigTableVo.Module.ChatModel.ToolMcp toolMcp) throws Exception {
+    public ToolCallback[] buildToolCallback(AiAgentConfigTableVO.Module.ChatModel.ToolMcp toolMcp) throws Exception {
 
-        AiAgentConfigTableVo.Module.ChatModel.ToolMcp.SSEServerParameters sseConfig = toolMcp.getSse();
+        AiAgentConfigTableVO.Module.ChatModel.ToolMcp.SSEServerParameters sseConfig = toolMcp.getSse();
 
         String originalBaseUri = sseConfig.getBaseUri();
         String baseUri = originalBaseUri;

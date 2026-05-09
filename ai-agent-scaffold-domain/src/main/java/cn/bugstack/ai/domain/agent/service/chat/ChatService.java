@@ -1,7 +1,7 @@
 package cn.bugstack.ai.domain.agent.service.chat;
 
 import cn.bugstack.ai.domain.agent.model.entity.ChatCommandEntity;
-import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVo;
+import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVO;
 import cn.bugstack.ai.domain.agent.model.valobj.AiAgentRegisterVO;
 import cn.bugstack.ai.domain.agent.model.valobj.properties.AiAgentAutoConfigProperties;
 import cn.bugstack.ai.domain.agent.service.IChatService;
@@ -40,12 +40,12 @@ public class ChatService implements IChatService {
     private final Map<String,String> userSessions = new ConcurrentHashMap<>();
 
     @Override
-    public List<AiAgentConfigTableVo.Agent> queryAiAgentConfigList() {
-        Map<String, AiAgentConfigTableVo> tables = aiAgentAutoConfigProperties.getTables();
+    public List<AiAgentConfigTableVO.Agent> queryAiAgentConfigList() {
+        Map<String, AiAgentConfigTableVO> tables = aiAgentAutoConfigProperties.getTables();
 
-        List<AiAgentConfigTableVo.Agent> agentList = new ArrayList<>();
+        List<AiAgentConfigTableVO.Agent> agentList = new ArrayList<>();
         if (null != tables) {
-            for (AiAgentConfigTableVo vo : tables.values()) {
+            for (AiAgentConfigTableVO vo : tables.values()) {
                 if (null != vo.getAgent()) {
                     agentList.add(vo.getAgent());
                 }

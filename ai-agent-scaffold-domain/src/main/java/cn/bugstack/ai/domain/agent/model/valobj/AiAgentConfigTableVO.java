@@ -10,7 +10,7 @@ import java.util.Map;
  * @date 2026年05月02日 9:57
  */
 @Data
-public class AiAgentConfigTableVo {
+public class AiAgentConfigTableVO {
 
     private String appName;
 
@@ -56,6 +56,7 @@ public class AiAgentConfigTableVo {
 
             private List<ToolMcp> toolMcpList;
 
+            private List<ToolSkills> toolSkillsList;
 
             @Data
             public static class ToolMcp {
@@ -94,6 +95,21 @@ public class AiAgentConfigTableVo {
                 public static class LocalParameters {
                     private String name;
                 }
+
+            }
+
+            @Data
+            public static class ToolSkills {
+
+                /**
+                 * 类型；directory（用户配置的，映射进来的）、resource（放到工程下的）
+                 */
+                private String type = "directory";
+
+                /**
+                 * 路径；
+                 */
+                private String path;
 
             }
 

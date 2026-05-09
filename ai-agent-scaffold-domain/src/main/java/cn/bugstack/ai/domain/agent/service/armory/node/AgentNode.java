@@ -1,14 +1,13 @@
 package cn.bugstack.ai.domain.agent.service.armory.node;
 
 import cn.bugstack.ai.domain.agent.model.entity.ArmoryCommandEntity;
-import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVo;
+import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVO;
 import cn.bugstack.ai.domain.agent.model.valobj.AiAgentRegisterVO;
 import cn.bugstack.ai.domain.agent.service.armory.AbstractArmorySupport;
 import cn.bugstack.ai.domain.agent.service.armory.factory.DefaultArmoryFactory;
 import cn.bugstack.ai.domain.agent.service.armory.matter.patch.MySpringAI;
 import cn.bugstack.wrench.design.framework.tree.StrategyHandler;
 import com.google.adk.agents.LlmAgent;
-import com.google.adk.models.springai.SpringAI;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.model.ChatModel;
@@ -34,10 +33,10 @@ public class AgentNode extends AbstractArmorySupport {
 
         ChatModel chatModel = dynamicContext.getChatModel();
 
-        AiAgentConfigTableVo aiAgentConfigTableVo = armoryCommandEntity.getAiAgentConfigTableVo();
-        List<AiAgentConfigTableVo.Module.Agent> agents = aiAgentConfigTableVo.getModule().getAgents();
+        AiAgentConfigTableVO aiAgentConfigTableVo = armoryCommandEntity.getAiAgentConfigTableVo();
+        List<AiAgentConfigTableVO.Module.Agent> agents = aiAgentConfigTableVo.getModule().getAgents();
 
-        for (AiAgentConfigTableVo.Module.Agent agent : agents){
+        for (AiAgentConfigTableVO.Module.Agent agent : agents){
             LlmAgent llmAgent = LlmAgent.builder()
                     .name(agent.getName())
                     .description(agent.getDescription())

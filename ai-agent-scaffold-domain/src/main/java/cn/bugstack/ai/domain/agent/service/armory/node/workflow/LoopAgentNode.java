@@ -1,9 +1,8 @@
 package cn.bugstack.ai.domain.agent.service.armory.node.workflow;
 
 import cn.bugstack.ai.domain.agent.model.entity.ArmoryCommandEntity;
-import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVo;
+import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVO;
 import cn.bugstack.ai.domain.agent.model.valobj.AiAgentRegisterVO;
-import cn.bugstack.ai.domain.agent.model.valobj.enums.AgentTypeEnum;
 import cn.bugstack.ai.domain.agent.service.armory.AbstractArmorySupport;
 import cn.bugstack.ai.domain.agent.service.armory.factory.DefaultArmoryFactory;
 import cn.bugstack.wrench.design.framework.tree.StrategyHandler;
@@ -26,7 +25,7 @@ public class LoopAgentNode extends AbstractArmorySupport {
 
         log.info("Ai Agent 装配操作 - LoopAgentNode");
 
-        AiAgentConfigTableVo.Module.AgentWorkflow currentAgentWorkflow = dynamicContext.getCurrentAgentWorkflow();
+        AiAgentConfigTableVO.Module.AgentWorkflow currentAgentWorkflow = dynamicContext.getCurrentAgentWorkflow();
 
 
         List<String> subAgentNames = currentAgentWorkflow.getSubAgents();

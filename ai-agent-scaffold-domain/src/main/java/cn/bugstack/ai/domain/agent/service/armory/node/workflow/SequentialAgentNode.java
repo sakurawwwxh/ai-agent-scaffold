@@ -1,14 +1,13 @@
 package cn.bugstack.ai.domain.agent.service.armory.node.workflow;
 
 import cn.bugstack.ai.domain.agent.model.entity.ArmoryCommandEntity;
-import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVo;
+import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVO;
 import cn.bugstack.ai.domain.agent.model.valobj.AiAgentRegisterVO;
 import cn.bugstack.ai.domain.agent.service.armory.AbstractArmorySupport;
 import cn.bugstack.ai.domain.agent.service.armory.factory.DefaultArmoryFactory;
 import cn.bugstack.ai.domain.agent.service.armory.node.RunnerNode;
 import cn.bugstack.wrench.design.framework.tree.StrategyHandler;
 import com.google.adk.agents.BaseAgent;
-import com.google.adk.agents.ParallelAgent;
 import com.google.adk.agents.SequentialAgent;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +32,7 @@ public class SequentialAgentNode extends AbstractArmorySupport {
 
         log.info("Ai Agent 装配操作 - sequentialAgentNode");
 
-        AiAgentConfigTableVo.Module.AgentWorkflow currentAgentWorkflow = dynamicContext.getCurrentAgentWorkflow();
+        AiAgentConfigTableVO.Module.AgentWorkflow currentAgentWorkflow = dynamicContext.getCurrentAgentWorkflow();
 
 
         List<String> subAgentNames = currentAgentWorkflow.getSubAgents();

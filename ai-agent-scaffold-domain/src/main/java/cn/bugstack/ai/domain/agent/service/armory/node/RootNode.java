@@ -1,7 +1,7 @@
 package cn.bugstack.ai.domain.agent.service.armory.node;
 
 import cn.bugstack.ai.domain.agent.model.entity.ArmoryCommandEntity;
-import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVo;
+import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVO;
 import cn.bugstack.ai.domain.agent.model.valobj.AiAgentRegisterVO;
 import cn.bugstack.ai.domain.agent.service.armory.AbstractArmorySupport;
 import cn.bugstack.ai.domain.agent.service.armory.factory.DefaultArmoryFactory;
@@ -24,8 +24,8 @@ public class RootNode extends AbstractArmorySupport {
     @Override
     protected AiAgentRegisterVO doApply(ArmoryCommandEntity armoryCommandEntity, DefaultArmoryFactory.DynamicContext dynamicContext) throws Exception {
 
-        AiAgentConfigTableVo aiAgentConfigTableVo = armoryCommandEntity.getAiAgentConfigTableVo();
-        AiAgentConfigTableVo.Agent agent = aiAgentConfigTableVo.getAgent();
+        AiAgentConfigTableVO aiAgentConfigTableVo = armoryCommandEntity.getAiAgentConfigTableVo();
+        AiAgentConfigTableVO.Agent agent = aiAgentConfigTableVo.getAgent();
 
         // /
         return router(armoryCommandEntity, dynamicContext);

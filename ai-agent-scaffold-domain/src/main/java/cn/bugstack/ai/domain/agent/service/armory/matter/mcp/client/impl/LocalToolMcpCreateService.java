@@ -1,6 +1,6 @@
 package cn.bugstack.ai.domain.agent.service.armory.matter.mcp.client.impl;
 
-import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVo;
+import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVO;
 import cn.bugstack.ai.domain.agent.service.armory.matter.mcp.client.ToolMcpCreateService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -22,9 +22,9 @@ public class LocalToolMcpCreateService implements ToolMcpCreateService {
 
 
     @Override
-    public ToolCallback[] buildToolCallback(AiAgentConfigTableVo.Module.ChatModel.ToolMcp toolMcp) {
+    public ToolCallback[] buildToolCallback(AiAgentConfigTableVO.Module.ChatModel.ToolMcp toolMcp) {
 
-        AiAgentConfigTableVo.Module.ChatModel.ToolMcp.LocalParameters local = toolMcp.getLocal();
+        AiAgentConfigTableVO.Module.ChatModel.ToolMcp.LocalParameters local = toolMcp.getLocal();
         String name = local.getName();
 
         ToolCallbackProvider localToolCallbackProvider = (ToolCallbackProvider) applicationContext.getBean(local.getName());

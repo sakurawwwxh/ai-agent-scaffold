@@ -1,7 +1,7 @@
 package cn.bugstack.ai.domain.agent.service.armory.node;
 
 import cn.bugstack.ai.domain.agent.model.entity.ArmoryCommandEntity;
-import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVo;
+import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVO;
 import cn.bugstack.ai.domain.agent.model.valobj.AiAgentRegisterVO;
 import cn.bugstack.ai.domain.agent.service.armory.AbstractArmorySupport;
 import cn.bugstack.ai.domain.agent.service.armory.factory.DefaultArmoryFactory;
@@ -9,14 +9,11 @@ import cn.bugstack.ai.types.enums.ResponseCode;
 import cn.bugstack.ai.types.exception.AppException;
 import cn.bugstack.wrench.design.framework.tree.StrategyHandler;
 import com.google.adk.agents.BaseAgent;
-import com.google.adk.agents.SequentialAgent;
 import com.google.adk.plugins.BasePlugin;
 import com.google.adk.runner.InMemoryRunner;
 import com.google.common.collect.ImmutableList;
-import com.networknt.schema.utils.StringUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.context.ApplicationContextException;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -34,9 +31,9 @@ public class RunnerNode extends AbstractArmorySupport {
 
         log.info("Ai Agent 装配操作 - RunnerNode");
 
-        AiAgentConfigTableVo aiAgentConfigTableVo = armoryCommandEntity.getAiAgentConfigTableVo();
+        AiAgentConfigTableVO aiAgentConfigTableVo = armoryCommandEntity.getAiAgentConfigTableVo();
         String appName = aiAgentConfigTableVo.getAppName();
-        AiAgentConfigTableVo.Agent agent = aiAgentConfigTableVo.getAgent();
+        AiAgentConfigTableVO.Agent agent = aiAgentConfigTableVo.getAgent();
 
         String agentId = agent.getAgentId();
         String agentName = agent.getAgentName();
@@ -62,8 +59,8 @@ public class RunnerNode extends AbstractArmorySupport {
     }
 
 
-    private  InMemoryRunner getInMemoryRunner(DefaultArmoryFactory.DynamicContext dynamicContext, AiAgentConfigTableVo aiAgentConfigTableVo, String appName) {
-        AiAgentConfigTableVo.Module.Runner runnerConfig = aiAgentConfigTableVo.getModule().getRunner();
+    private  InMemoryRunner getInMemoryRunner(DefaultArmoryFactory.DynamicContext dynamicContext, AiAgentConfigTableVO aiAgentConfigTableVo, String appName) {
+        AiAgentConfigTableVO.Module.Runner runnerConfig = aiAgentConfigTableVo.getModule().getRunner();
 
 
         String agentName = runnerConfig.getAgentName();

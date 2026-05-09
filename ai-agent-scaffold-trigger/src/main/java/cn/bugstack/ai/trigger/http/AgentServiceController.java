@@ -3,7 +3,7 @@ package cn.bugstack.ai.trigger.http;
 import cn.bugstack.ai.api.dto.*;
 import cn.bugstack.ai.api.response.IAgentService;
 import cn.bugstack.ai.api.response.Response;
-import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVo;
+import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVO;
 import cn.bugstack.ai.domain.agent.service.IChatService;
 import cn.bugstack.ai.types.enums.ResponseCode;
 import cn.bugstack.ai.types.exception.AppException;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,7 +35,7 @@ public class AgentServiceController implements IAgentService {
 
             log.info("查询智能体配置列表");
 
-            List<AiAgentConfigTableVo.Agent> agentConfigs = chatService.queryAiAgentConfigList();
+            List<AiAgentConfigTableVO.Agent> agentConfigs = chatService.queryAiAgentConfigList();
 
             List<AiAgentConfigResponseDTO> responseDTOs = agentConfigs.stream().map(agentConfig -> {
                 AiAgentConfigResponseDTO responseDTO = new AiAgentConfigResponseDTO();

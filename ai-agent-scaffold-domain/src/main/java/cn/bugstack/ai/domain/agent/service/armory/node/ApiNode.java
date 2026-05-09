@@ -1,7 +1,7 @@
 package cn.bugstack.ai.domain.agent.service.armory.node;
 
 import cn.bugstack.ai.domain.agent.model.entity.ArmoryCommandEntity;
-import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVo;
+import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVO;
 import cn.bugstack.ai.domain.agent.model.valobj.AiAgentRegisterVO;
 import cn.bugstack.ai.domain.agent.service.armory.AbstractArmorySupport;
 import cn.bugstack.ai.domain.agent.service.armory.factory.DefaultArmoryFactory;
@@ -29,8 +29,8 @@ public class ApiNode extends AbstractArmorySupport {
         //编写api实例化操作
         log.info("Ai Agent 装配操作 - AiApiNode");
 
-        AiAgentConfigTableVo aiAgentConfigTableVo = armoryCommandEntity.getAiAgentConfigTableVo();
-        AiAgentConfigTableVo.Module.AiApi aiApiConfig = aiAgentConfigTableVo.getModule().getAiApi();
+        AiAgentConfigTableVO aiAgentConfigTableVo = armoryCommandEntity.getAiAgentConfigTableVo();
+        AiAgentConfigTableVO.Module.AiApi aiApiConfig = aiAgentConfigTableVo.getModule().getAiApi();
 
         OpenAiApi openAiApi = OpenAiApi.builder()
                 .baseUrl(aiApiConfig.getBaseUrl())

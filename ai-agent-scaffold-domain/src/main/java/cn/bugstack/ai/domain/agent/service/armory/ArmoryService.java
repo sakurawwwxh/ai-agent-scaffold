@@ -1,7 +1,7 @@
 package cn.bugstack.ai.domain.agent.service.armory;
 
 import cn.bugstack.ai.domain.agent.model.entity.ArmoryCommandEntity;
-import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVo;
+import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVO;
 import cn.bugstack.ai.domain.agent.model.valobj.AiAgentRegisterVO;
 import cn.bugstack.ai.domain.agent.service.IArmoryService;
 import cn.bugstack.ai.domain.agent.service.armory.factory.DefaultArmoryFactory;
@@ -24,14 +24,14 @@ public class ArmoryService implements IArmoryService {
     private DefaultArmoryFactory defaultArmoryFactory;
 
     @Override
-    public void acceptArmoryAgents(List<AiAgentConfigTableVo> tables) throws Exception {
+    public void acceptArmoryAgents(List<AiAgentConfigTableVO> tables) throws Exception {
         //api
         //model
         //agent
         //loop/.../...
         //runner..
 
-        for (AiAgentConfigTableVo table : tables) {
+        for (AiAgentConfigTableVO table : tables) {
             StrategyHandler<ArmoryCommandEntity, DefaultArmoryFactory.DynamicContext, AiAgentRegisterVO> handler = defaultArmoryFactory.armoryStrategyHandler();
             handler.apply(
                     ArmoryCommandEntity.builder()

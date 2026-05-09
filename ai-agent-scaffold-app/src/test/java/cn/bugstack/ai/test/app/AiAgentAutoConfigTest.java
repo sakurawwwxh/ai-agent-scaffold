@@ -1,6 +1,5 @@
 package cn.bugstack.ai.test.app;
 
-import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVo;
 import cn.bugstack.ai.domain.agent.model.valobj.AiAgentRegisterVO;
 import com.alibaba.fastjson.JSON;
 import com.google.adk.events.Event;
@@ -21,7 +20,6 @@ import cn.bugstack.ai.domain.agent.model.valobj.properties.AiAgentAutoConfigProp
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author Wxh

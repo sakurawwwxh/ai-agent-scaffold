@@ -1,7 +1,7 @@
 package cn.bugstack.ai.domain.agent.service.armory.node;
 
 import cn.bugstack.ai.domain.agent.model.entity.ArmoryCommandEntity;
-import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVo;
+import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVO;
 import cn.bugstack.ai.domain.agent.model.valobj.AiAgentRegisterVO;
 import cn.bugstack.ai.domain.agent.model.valobj.enums.AgentTypeEnum;
 import cn.bugstack.ai.domain.agent.service.armory.AbstractArmorySupport;
@@ -42,8 +42,8 @@ public class AgentWorkflowNode extends AbstractArmorySupport {
 
         log.info("Ai Agent 装配操作 - AgentWorkflowNode");
 
-        AiAgentConfigTableVo aiAgentConfigTableVo = armoryCommandEntity.getAiAgentConfigTableVo();
-        List<AiAgentConfigTableVo.Module.AgentWorkflow> agentWorkflows = aiAgentConfigTableVo.getModule().getAgentWorkflows();
+        AiAgentConfigTableVO aiAgentConfigTableVo = armoryCommandEntity.getAiAgentConfigTableVo();
+        List<AiAgentConfigTableVO.Module.AgentWorkflow> agentWorkflows = aiAgentConfigTableVo.getModule().getAgentWorkflows();
 
         if (null==agentWorkflows || agentWorkflows.isEmpty() || dynamicContext.getCurrentStepIndex() >= agentWorkflows.size()){
 
@@ -65,7 +65,7 @@ public class AgentWorkflowNode extends AbstractArmorySupport {
     public StrategyHandler<ArmoryCommandEntity, DefaultArmoryFactory.DynamicContext, AiAgentRegisterVO> get(ArmoryCommandEntity armoryCommandEntity, DefaultArmoryFactory.DynamicContext dynamicContext) throws Exception {
 
 
-        AiAgentConfigTableVo.Module.AgentWorkflow currentAgentWorkflow = dynamicContext.getCurrentAgentWorkflow();
+        AiAgentConfigTableVO.Module.AgentWorkflow currentAgentWorkflow = dynamicContext.getCurrentAgentWorkflow();
 
         if (null==currentAgentWorkflow){
             return runnerNode;

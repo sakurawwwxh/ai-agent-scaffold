@@ -1,6 +1,6 @@
 package cn.bugstack.ai.domain.agent.service.armory.matter.mcp.client.impl;
 
-import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVo;
+import cn.bugstack.ai.domain.agent.model.valobj.AiAgentConfigTableVO;
 import cn.bugstack.ai.domain.agent.service.armory.matter.mcp.client.ToolMcpCreateService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.modelcontextprotocol.client.McpClient;
@@ -24,12 +24,12 @@ import java.time.Duration;
 @Service
 public class StdioToolMcpCreateService implements ToolMcpCreateService {
     @Override
-    public ToolCallback[] buildToolCallback(AiAgentConfigTableVo.Module.ChatModel.ToolMcp toolMcp) {
+    public ToolCallback[] buildToolCallback(AiAgentConfigTableVO.Module.ChatModel.ToolMcp toolMcp) {
 
-        AiAgentConfigTableVo.Module.ChatModel.ToolMcp.StdioServerParameters stdioConfig = toolMcp.getStdio();
+        AiAgentConfigTableVO.Module.ChatModel.ToolMcp.StdioServerParameters stdioConfig = toolMcp.getStdio();
 
 
-        AiAgentConfigTableVo.Module.ChatModel.ToolMcp.StdioServerParameters.ServerParameters serverParameters = stdioConfig.getServerParameters();
+        AiAgentConfigTableVO.Module.ChatModel.ToolMcp.StdioServerParameters.ServerParameters serverParameters = stdioConfig.getServerParameters();
 
         ServerParameters stdioParams = ServerParameters
                 .builder(serverParameters.getCommand())
