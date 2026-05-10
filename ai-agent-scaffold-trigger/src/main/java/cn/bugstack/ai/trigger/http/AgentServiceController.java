@@ -134,7 +134,6 @@ public class AgentServiceController implements IAgentService {
 
 
     @RequestMapping(value = "chat_stream", method = RequestMethod.POST)
-
     @Override
     public ResponseBodyEmitter chatStream(@RequestBody ChatRequestDTO requestDTO) {
         ResponseBodyEmitter emitter = new ResponseBodyEmitter(3 * 60 * 1000L);

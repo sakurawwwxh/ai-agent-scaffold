@@ -32,176 +32,368 @@
         --white: #fafaf9;
       }
 
-      * { margin: 0; padding: 0; box-sizing: border-box; }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-      html, body {
+      html,
+      body {
         height: 100%;
-        font-family: "Plus Jakarta Sans", "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        font-family:
+          "Plus Jakarta Sans",
+          "DM Sans",
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
         -webkit-font-smoothing: antialiased;
         overflow: hidden;
       }
 
       .bg-base {
-        position: fixed; inset: 0; z-index: 0;
-        background: linear-gradient(165deg, #1c1917 0%, #292524 30%, #2d2825 55%, #1c1917 100%);
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background: linear-gradient(
+          165deg,
+          #1c1917 0%,
+          #292524 30%,
+          #2d2825 55%,
+          #1c1917 100%
+        );
       }
 
       .bg-particles {
-        position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        pointer-events: none;
       }
 
       .particle {
-        position: absolute; border-radius: 50%; filter: blur(50px); opacity: 0.14;
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(50px);
+        opacity: 0.14;
         animation: drift 22s ease-in-out infinite;
       }
 
-      .particle:nth-child(1) { width: 600px; height: 600px; background: radial-gradient(circle, rgba(245,158,11,0.6), transparent 70%); top: -12%; right: -10%; animation-delay: 0s; }
-      .particle:nth-child(2) { width: 400px; height: 400px; background: radial-gradient(circle, rgba(244,63,94,0.4), transparent 70%); bottom: -8%; left: -6%; animation-delay: -8s; animation-duration: 24s; }
-      .particle:nth-child(3) { width: 300px; height: 300px; background: radial-gradient(circle, rgba(251,191,36,0.45), transparent 70%); top: 40%; left: 55%; animation-delay: -16s; animation-duration: 28s; }
+      .particle:nth-child(1) {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(245, 158, 11, 0.6),
+          transparent 70%
+        );
+        top: -12%;
+        right: -10%;
+        animation-delay: 0s;
+      }
+      .particle:nth-child(2) {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(244, 63, 94, 0.4),
+          transparent 70%
+        );
+        bottom: -8%;
+        left: -6%;
+        animation-delay: -8s;
+        animation-duration: 24s;
+      }
+      .particle:nth-child(3) {
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(
+          circle,
+          rgba(251, 191, 36, 0.45),
+          transparent 70%
+        );
+        top: 40%;
+        left: 55%;
+        animation-delay: -16s;
+        animation-duration: 28s;
+      }
 
       @keyframes drift {
-        0%, 100% { transform: translate(0, 0) scale(1); }
-        25% { transform: translate(25px, -35px) scale(1.06); }
-        50% { transform: translate(-18px, 15px) scale(0.95); }
-        75% { transform: translate(12px, 25px) scale(1.04); }
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        25% {
+          transform: translate(25px, -35px) scale(1.06);
+        }
+        50% {
+          transform: translate(-18px, 15px) scale(0.95);
+        }
+        75% {
+          transform: translate(12px, 25px) scale(1.04);
+        }
       }
 
       .app {
-        position: relative; z-index: 1;
-        height: 100vh; display: flex; flex-direction: column;
+        position: relative;
+        z-index: 1;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
       }
 
       .topbar {
         flex: 0 0 auto;
         background: rgba(41, 37, 36, 0.72);
-        backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-        border-bottom: 1px solid rgba(255,255,255,0.07);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
         padding: 10px 24px;
-        display: flex; align-items: center; justify-content: space-between; gap: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
         flex-wrap: wrap;
         z-index: 5;
       }
 
       .brand-row {
-        display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
       }
 
       .brand-mark {
-        width: 38px; height: 38px; border-radius: 12px;
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
         background: linear-gradient(135deg, var(--amber-500), var(--amber-600));
-        display: flex; align-items: center; justify-content: center;
-        font-size: 15px; font-weight: 900; color: var(--amber-900);
-        box-shadow: 0 6px 22px rgba(245,158,11,0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+        font-weight: 900;
+        color: var(--amber-900);
+        box-shadow: 0 6px 22px rgba(245, 158, 11, 0.3);
       }
 
       .brand-row h3 {
-        font-size: 14px; font-weight: 700; color: var(--white); letter-spacing: -0.1px;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--white);
+        letter-spacing: -0.1px;
       }
 
       .brand-row .tagline {
-        display: block; font-size: 10px; color: var(--stone-400); margin-top: 1px;
+        display: block;
+        font-size: 10px;
+        color: var(--stone-400);
+        margin-top: 1px;
       }
 
       .controls {
-        display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
       }
 
       .sel {
         padding: 9px 36px 9px 14px;
-        border: 1px solid rgba(255,255,255,0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 12px;
-        background: rgba(255,255,255,0.04);
-        color: var(--white); font-size: 13px; font-weight: 600;
-        outline: none; cursor: pointer;
-        -webkit-appearance: none; appearance: none;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--white);
+        font-size: 13px;
+        font-weight: 600;
+        outline: none;
+        cursor: pointer;
+        -webkit-appearance: none;
+        appearance: none;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a8a29e' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-        background-repeat: no-repeat; background-position: right 12px center;
-        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        transition:
+          border-color 0.2s ease,
+          box-shadow 0.2s ease;
       }
 
       .sel:focus {
         border-color: var(--amber-500);
-        box-shadow: 0 0 0 4px rgba(245,158,11,0.08);
+        box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.08);
       }
 
       .user-pill {
-        display: flex; align-items: center; gap: 8px;
-        padding: 7px 14px; border-radius: 999px;
-        border: 1px solid rgba(255,255,255,0.08);
-        background: rgba(255,255,255,0.03);
-        font-size: 11px; color: var(--stone-400);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.03);
+        font-size: 11px;
+        color: var(--stone-400);
       }
 
       .user-pill b {
-        font-weight: 700; color: var(--amber-400);
+        font-weight: 700;
+        color: var(--amber-400);
       }
 
       .btn-sm {
-        padding: 8px 16px; border-radius: 10px;
-        font-size: 12px; font-weight: 600; cursor: pointer;
-        border: 1px solid rgba(255,255,255,0.1);
-        background: rgba(255,255,255,0.04);
+        padding: 8px 16px;
+        border-radius: 10px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.04);
         color: var(--stone-400);
         transition: all 0.2s ease;
       }
 
       .btn-sm:hover {
-        border-color: rgba(244,63,94,0.35);
+        border-color: rgba(244, 63, 94, 0.35);
         color: var(--rose-400);
-        background: rgba(244,63,94,0.05);
+        background: rgba(244, 63, 94, 0.05);
+      }
+
+      .stream-toggle {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.03);
+        font-size: 11px;
+        color: var(--stone-400);
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+      }
+
+      .stream-toggle:hover {
+        border-color: rgba(245, 158, 11, 0.25);
+        background: rgba(245, 158, 11, 0.05);
+      }
+
+      .stream-toggle.active {
+        border-color: rgba(245, 158, 11, 0.35);
+        background: rgba(245, 158, 11, 0.08);
+        color: var(--amber-400);
+      }
+
+      .stream-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--stone-600);
+        transition: all 0.2s ease;
+      }
+
+      .stream-toggle.active .stream-dot {
+        background: var(--amber-400);
+        box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
       }
 
       .main-area {
-        flex: 1 1 0; min-height: 0;
-        display: flex; flex-direction: column;
-        max-width: 960px; width: 100%; margin: 0 auto;
+        flex: 1 1 0;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        max-width: 960px;
+        width: 100%;
+        margin: 0 auto;
         padding: 0 16px 0 16px;
       }
 
       .chat-box {
-        flex: 1 1 0; overflow-y: auto; overflow-x: hidden;
+        flex: 1 1 0;
+        overflow-y: auto;
+        overflow-x: hidden;
         padding: 20px 0 8px 0;
         scroll-behavior: smooth;
       }
 
-      .chat-box::-webkit-scrollbar { width: 6px; }
-      .chat-box::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 999px; }
-      .chat-box::-webkit-scrollbar-track { background: transparent; }
+      .chat-box::-webkit-scrollbar {
+        width: 6px;
+      }
+      .chat-box::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 999px;
+      }
+      .chat-box::-webkit-scrollbar-track {
+        background: transparent;
+      }
 
       .empty-state {
-        height: 100%; display: flex; flex-direction: column;
-        align-items: center; justify-content: center;
-        text-align: center; padding: 40px 20px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 40px 20px;
       }
 
       .empty-icon {
-        width: 72px; height: 72px; border-radius: 24px;
-        background: rgba(245,158,11,0.08);
-        border: 1px solid rgba(245,158,11,0.15);
-        display: flex; align-items: center; justify-content: center;
-        font-size: 32px; margin-bottom: 20px;
+        width: 72px;
+        height: 72px;
+        border-radius: 24px;
+        background: rgba(245, 158, 11, 0.08);
+        border: 1px solid rgba(245, 158, 11, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        margin-bottom: 20px;
       }
 
       .empty-state h2 {
-        font-size: 22px; font-weight: 800; color: var(--white); letter-spacing: -0.2px; margin-bottom: 8px;
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--white);
+        letter-spacing: -0.2px;
+        margin-bottom: 8px;
       }
 
       .empty-state p {
-        font-size: 13px; color: var(--stone-500); line-height: 1.6; max-width: 48ch;
+        font-size: 13px;
+        color: var(--stone-500);
+        line-height: 1.6;
+        max-width: 48ch;
       }
 
       .msg-wrap {
-        display: flex; margin: 12px 0;
+        display: flex;
+        margin: 12px 0;
         animation: msgIn 0.35s cubic-bezier(0.22, 0.61, 0.36, 1) both;
       }
 
       @keyframes msgIn {
-        from { opacity: 0; transform: translateY(12px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
-      .msg-wrap.you { justify-content: flex-end; }
-      .msg-wrap.nc { justify-content: flex-start; }
+      .msg-wrap.you {
+        justify-content: flex-end;
+      }
+      .msg-wrap.nc {
+        justify-content: flex-start;
+      }
 
       .bubble {
         max-width: 76%;
@@ -214,15 +406,19 @@
       }
 
       .msg-wrap.you .bubble {
-        background: linear-gradient(135deg, rgba(245,158,11,0.18), rgba(251,191,36,0.1));
-        border: 1px solid rgba(245,158,11,0.2);
+        background: linear-gradient(
+          135deg,
+          rgba(245, 158, 11, 0.18),
+          rgba(251, 191, 36, 0.1)
+        );
+        border: 1px solid rgba(245, 158, 11, 0.2);
         border-bottom-right-radius: 6px;
         color: var(--white);
       }
 
       .msg-wrap.nc .bubble {
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.08);
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-bottom-left-radius: 6px;
         color: var(--stone-300);
       }
@@ -233,146 +429,217 @@
       }
 
       .bubble .msg-foot {
-        margin-top: 9px; padding-top: 9px;
-        border-top: 1px solid rgba(255,255,255,0.06);
-        font-size: 10px; color: var(--stone-500);
-        display: flex; gap: 12px; flex-wrap: wrap;
+        margin-top: 9px;
+        padding-top: 9px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        font-size: 10px;
+        color: var(--stone-500);
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
       }
 
       .compose-bar {
         flex: 0 0 auto;
         padding: 0;
-        background: linear-gradient(180deg, transparent 0%, rgba(28,25,23,0.7) 20%, rgba(28,25,23,0.95) 100%);
-        border-top: 1px solid rgba(255,255,255,0.06);
+        background: linear-gradient(
+          180deg,
+          transparent 0%,
+          rgba(28, 25, 23, 0.7) 20%,
+          rgba(28, 25, 23, 0.95) 100%
+        );
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
       }
 
       .compose-inner {
-        max-width: 960px; margin: 0 auto;
+        max-width: 960px;
+        margin: 0 auto;
         padding: 14px 16px 20px 16px;
       }
 
       .compose-wrap {
-        display: flex; align-items: flex-end; gap: 12px;
-        background: rgba(255,255,255,0.05);
-        border: 1px solid rgba(255,255,255,0.09);
+        display: flex;
+        align-items: flex-end;
+        gap: 12px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.09);
         border-radius: 20px;
         padding: 6px 6px 6px 18px;
-        transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        transition:
+          border-color 0.25s ease,
+          box-shadow 0.25s ease,
+          background 0.25s ease;
       }
 
       .compose-wrap:focus-within {
-        border-color: rgba(245,158,11,0.45);
+        border-color: rgba(245, 158, 11, 0.45);
         box-shadow:
-          0 0 0 5px rgba(245,158,11,0.06),
-          0 8px 32px rgba(0,0,0,0.3);
-        background: rgba(255,255,255,0.07);
+          0 0 0 5px rgba(245, 158, 11, 0.06),
+          0 8px 32px rgba(0, 0, 0, 0.3);
+        background: rgba(255, 255, 255, 0.07);
       }
 
       .compose-wrap textarea {
-        flex: 1 1 auto; border: none; background: transparent;
-        color: var(--white); font-size: 15px; outline: none;
-        resize: none; min-height: 28px; max-height: 160px;
-        line-height: 1.6; font-family: inherit; padding: 4px 0;
+        flex: 1 1 auto;
+        border: none;
+        background: transparent;
+        color: var(--white);
+        font-size: 15px;
+        outline: none;
+        resize: none;
+        min-height: 28px;
+        max-height: 160px;
+        line-height: 1.6;
+        font-family: inherit;
+        padding: 4px 0;
       }
 
-      .compose-wrap textarea::placeholder { color: var(--stone-600); }
+      .compose-wrap textarea::placeholder {
+        color: var(--stone-600);
+      }
 
       .compose-actions {
         flex: 0 0 auto;
-        display: flex; align-items: center; gap: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
 
       .compose-hint {
-        font-size: 10px; color: var(--stone-600);
+        font-size: 10px;
+        color: var(--stone-600);
         white-space: nowrap;
         display: none;
       }
 
       @media (min-width: 500px) {
-        .compose-hint { display: inline; }
+        .compose-hint {
+          display: inline;
+        }
       }
 
       .btn-send {
         flex: 0 0 auto;
-        height: 44px; padding: 0 22px;
+        height: 44px;
+        padding: 0 22px;
         border-radius: 15px;
-        border: none; cursor: pointer;
-        font-size: 14px; font-weight: 700; letter-spacing: 0.2px;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.2px;
         background: linear-gradient(135deg, var(--amber-400), var(--amber-500));
         color: var(--amber-900);
-        display: flex; align-items: center; gap: 8px;
-        box-shadow: 0 6px 24px rgba(245,158,11,0.25);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 6px 24px rgba(245, 158, 11, 0.25);
         transition: all 0.2s ease;
         white-space: nowrap;
       }
 
       .btn-send:hover {
-        box-shadow: 0 10px 32px rgba(245,158,11,0.4);
+        box-shadow: 0 10px 32px rgba(245, 158, 11, 0.4);
         transform: translateY(-1px);
       }
 
-      .btn-send:active { transform: scale(0.95); }
-      .btn-send:disabled { opacity: 0.35; cursor: not-allowed; transform: none; box-shadow: none; }
+      .btn-send:active {
+        transform: scale(0.95);
+      }
+      .btn-send:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
 
       .status-line {
         padding: 0 0 8px 0;
-        font-size: 11px; color: var(--stone-500);
-        min-height: 18px; text-align: center;
+        font-size: 11px;
+        color: var(--stone-500);
+        min-height: 18px;
+        text-align: center;
       }
 
       .status-line.error {
         color: var(--rose-400);
-        background: rgba(244,63,94,0.06);
-        padding: 6px 14px; border-radius: 8px;
+        background: rgba(244, 63, 94, 0.06);
+        padding: 6px 14px;
+        border-radius: 8px;
         display: inline-block;
       }
 
       .modal-cover {
-        position: fixed; inset: 0; z-index: 30;
-        display: none; align-items: center; justify-content: center; padding: 20px;
-        background: rgba(0,0,0,0.55); backdrop-filter: blur(10px);
+        position: fixed;
+        inset: 0;
+        z-index: 30;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.55);
+        backdrop-filter: blur(10px);
       }
 
       .modal-card {
         width: min(520px, 100%);
         border-radius: 22px;
-        border: 1px solid rgba(255,255,255,0.1);
-        background: rgba(41,37,36,0.9);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(41, 37, 36, 0.9);
         backdrop-filter: blur(20px);
-        box-shadow: 0 30px 80px rgba(0,0,0,0.55);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
         overflow: hidden;
       }
 
       .modal-card h3 {
-        padding: 18px 20px 12px 20px; font-size: 16px; font-weight: 800; color: var(--white);
+        padding: 18px 20px 12px 20px;
+        font-size: 16px;
+        font-weight: 800;
+        color: var(--white);
       }
 
       .modal-card .mod-body {
         padding: 0 20px 16px 20px;
-        font-size: 12px; color: var(--stone-400); line-height: 1.7;
+        font-size: 12px;
+        color: var(--stone-400);
+        line-height: 1.7;
       }
 
       .modal-card code {
-        display: block; padding: 12px 14px; border-radius: 12px;
-        background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.08);
-        color: var(--stone-300); font-size: 12px; white-space: pre-wrap; word-break: break-word;
+        display: block;
+        padding: 12px 14px;
+        border-radius: 12px;
+        background: rgba(0, 0, 0, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--stone-300);
+        font-size: 12px;
+        white-space: pre-wrap;
+        word-break: break-word;
         margin-top: 10px;
       }
 
       .mod-actions {
-        padding: 0 20px 18px 20px; display: flex; gap: 10px; justify-content: flex-end;
+        padding: 0 20px 18px 20px;
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
       }
 
       .btn-mod {
-        padding: 9px 20px; border-radius: 11px;
-        font-size: 12px; font-weight: 700; cursor: pointer;
-        border: 1px solid rgba(255,255,255,0.12);
-        background: rgba(255,255,255,0.05);
+        padding: 9px 20px;
+        border-radius: 11px;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.05);
         color: var(--stone-300);
         transition: all 0.2s ease;
       }
 
-      .btn-mod:hover { background: rgba(255,255,255,0.1); }
+      .btn-mod:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
 
       .btn-mod.primary {
         border: none;
@@ -381,8 +648,14 @@
       }
 
       @media (max-width: 700px) {
-        .topbar { padding: 10px 14px; gap: 8px; }
-        .bubble { max-width: 88%; font-size: 13px; }
+        .topbar {
+          padding: 10px 14px;
+          gap: 8px;
+        }
+        .bubble {
+          max-width: 88%;
+          font-size: 13px;
+        }
       }
     </style>
   </head>
@@ -410,6 +683,11 @@
             <option value="">— 加载中 —</option>
           </select>
 
+          <button class="stream-toggle" id="streamToggle" type="button" title="切换流式对话">
+            <span class="stream-dot"></span>
+            <span id="streamLabel">流式</span>
+          </button>
+
           <div class="user-pill">
             <span>会话：</span>
             <b id="userIdText">-</b>
@@ -424,19 +702,33 @@
           <div class="empty-state" id="emptyState">
             <div class="empty-icon">⚡</div>
             <h2>向 AI 描述你的意图</h2>
-            <p>选择上方的智能体并输入第一条指令。引擎将自动拆解、编排并返回结果。每次对话都会创建独立会话。</p>
+            <p>
+              选择上方的智能体并输入第一条指令。引擎将自动拆解、编排并返回结果。每次对话都会创建独立会话。
+            </p>
           </div>
         </div>
 
-        <div class="status-line" id="statusLine" role="status" aria-live="polite"></div>
+        <div
+          class="status-line"
+          id="statusLine"
+          role="status"
+          aria-live="polite"
+        ></div>
 
         <div class="compose-bar">
           <div class="compose-inner">
             <form class="compose-wrap" id="composeForm">
-              <textarea id="msgInput" placeholder="输入你想做的事…" rows="1" autocomplete="off"></textarea>
+              <textarea
+                id="msgInput"
+                placeholder="输入你想做的事…"
+                rows="1"
+                autocomplete="off"
+              ></textarea>
               <div class="compose-actions">
                 <span class="compose-hint">Enter 发送 · Shift+Enter 换行</span>
-                <button class="btn-send" id="sendBtn" type="submit">↑ 发送</button>
+                <button class="btn-send" id="sendBtn" type="submit">
+                  ↑ 发送
+                </button>
               </div>
             </form>
           </div>
@@ -448,12 +740,17 @@
       <div class="modal-card">
         <h3>无法连接中控引擎</h3>
         <div class="mod-body">
-          <p>页面需要访问后端服务接口。请确认引擎已启动且 API_BASE 配置正确，然后重试。</p>
+          <p>
+            页面需要访问后端服务接口。请确认引擎已启动且 API_BASE
+            配置正确，然后重试。
+          </p>
           <code id="backendCode"></code>
         </div>
         <div class="mod-actions">
           <button class="btn-mod" type="button" id="modalCloseBtn">关闭</button>
-          <button class="btn-mod primary" type="button" id="modalRetryBtn">重新连接</button>
+          <button class="btn-mod primary" type="button" id="modalRetryBtn">
+            重新连接
+          </button>
         </div>
       </div>
     </div>
@@ -477,26 +774,39 @@
         document.cookie = `${name}=; Max-Age=0; Path=/; SameSite=Lax`;
       }
 
-      function safeJson(s) { try { return JSON.parse(s); } catch { return null; } }
+      function safeJson(s) {
+        try {
+          return JSON.parse(s);
+        } catch {
+          return null;
+        }
+      }
 
       function escapeHtml(t) {
         return String(t)
-          .replaceAll("&", "&amp;").replaceAll("<", "&lt;")
-          .replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;");
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#39;");
       }
 
       function fmtTime(ts) {
         const d = new Date(ts);
         const p = (n) => String(n).padStart(2, "0");
-        return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
+        return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
       }
 
-      const apiBase = (window.APP_CONFIG && window.APP_CONFIG.API_BASE) || "http://127.0.0.1:8091";
+      const apiBase =
+        (window.APP_CONFIG && window.APP_CONFIG.API_BASE) ||
+        "http://127.0.0.1:8091";
 
       const d = {
         agentSel: document.getElementById("agentSelect"),
         userIdText: document.getElementById("userIdText"),
         logoutBtn: document.getElementById("logoutBtn"),
+        streamToggle: document.getElementById("streamToggle"),
+        streamLabel: document.getElementById("streamLabel"),
         chatBox: document.getElementById("chatBox"),
         emptyState: document.getElementById("emptyState"),
         statusLine: document.getElementById("statusLine"),
@@ -509,6 +819,8 @@
         modalClose: document.getElementById("modalCloseBtn"),
         modalRetry: document.getElementById("modalRetryBtn"),
       };
+
+      let streamMode = false;
 
       d.apiHint.textContent = `引擎: ${apiBase}`;
 
@@ -525,7 +837,10 @@
         if (type) d.statusLine.classList.add(type);
       }
 
-      function showModal(visible) { d.modal.style.display = visible ? "flex" : "none"; if (visible) d.modalRetry.focus(); }
+      function showModal(visible) {
+        d.modal.style.display = visible ? "flex" : "none";
+        if (visible) d.modalRetry.focus();
+      }
 
       function isBackendDown(err) {
         const m = err && err.message ? String(err.message) : "";
@@ -533,7 +848,10 @@
       }
 
       function popModal(reason) {
-        const msg = reason && reason.message ? String(reason.message) : String(reason || "");
+        const msg =
+          reason && reason.message
+            ? String(reason.message)
+            : String(reason || "");
         d.modalCode.textContent = [
           `配置文件: docs/dev-ops/nginx/html/js/config.js`,
           `API_BASE: ${apiBase}`,
@@ -544,11 +862,17 @@
       }
 
       d.modalClose.addEventListener("click", () => showModal(false));
-      d.modal.addEventListener("click", (e) => { if (e.target === d.modal) showModal(false); });
+      d.modal.addEventListener("click", (e) => {
+        if (e.target === d.modal) showModal(false);
+      });
 
-      function scrollDown() { d.chatBox.scrollTop = d.chatBox.scrollHeight; }
+      function scrollDown() {
+        d.chatBox.scrollTop = d.chatBox.scrollHeight;
+      }
 
-      function hideEmptyState() { d.emptyState.style.display = "none"; }
+      function hideEmptyState() {
+        d.emptyState.style.display = "none";
+      }
 
       function addBubble(who, text, metaLines) {
         hideEmptyState();
@@ -579,7 +903,10 @@
         let res;
         try {
           res = await fetch(url, {
-            headers: { "Content-Type": "application/json", ...(opts && opts.headers || {}) },
+            headers: {
+              "Content-Type": "application/json",
+              ...((opts && opts.headers) || {}),
+            },
             ...opts,
           });
         } catch (err) {
@@ -588,42 +915,116 @@
         }
         const ct = res.headers.get("content-type") || "";
         const raw = await res.text();
-        const json = ct.includes("application/json") ? safeJson(raw) : (safeJson(raw) || { raw });
-        if (!res.ok) throw new Error((json && (json.info || json.message)) || raw || `HTTP ${res.status}`);
+        const json = ct.includes("application/json")
+          ? safeJson(raw)
+          : safeJson(raw) || { raw };
+        if (!res.ok)
+          throw new Error(
+            (json && (json.info || json.message)) ||
+              raw ||
+              `HTTP ${res.status}`,
+          );
         return json;
       }
 
       function ensureOk(resp) {
         if (!resp) throw new Error("引擎无响应");
-        if (resp.code && resp.code !== "0000") throw new Error(resp.info || `返回码: ${resp.code}`);
+        if (resp.code && resp.code !== "0000")
+          throw new Error(resp.info || `返回码: ${resp.code}`);
         return resp.data;
       }
 
       async function loadAgents() {
         d.agentSel.innerHTML = `<option value="">— 加载中 —</option>`;
-        const resp = await apiFetch("/api/v1/query_ai_agent_config_list", { method: "GET" });
+        const resp = await apiFetch("/api/v1/query_ai_agent_config_list", {
+          method: "GET",
+        });
         const list = ensureOk(resp) || [];
         const last = localStorage.getItem("nc_last_agent") || "";
         const opts = [`<option value="">选择智能体</option>`].concat(
-          list.map(x => {
+          list.map((x) => {
             const id = x.agentId || "";
             const nm = x.agentName || id;
             const ds = x.agentDesc ? ` · ${x.agentDesc}` : "";
             const sel = id && id === last ? "selected" : "";
             return `<option value="${escapeHtml(id)}" ${sel}>${escapeHtml(nm)}${escapeHtml(ds)}</option>`;
-          })
+          }),
         );
         d.agentSel.innerHTML = opts.join("");
       }
 
       d.agentSel.addEventListener("change", () => {
-        if (d.agentSel.value) localStorage.setItem("nc_last_agent", d.agentSel.value);
+        if (d.agentSel.value)
+          localStorage.setItem("nc_last_agent", d.agentSel.value);
       });
 
       d.logoutBtn.addEventListener("click", () => {
         deleteCookie(COOKIE_NAME);
         window.location.replace("./login.html");
       });
+
+      d.streamToggle.addEventListener("click", () => {
+        streamMode = !streamMode;
+        d.streamToggle.classList.toggle("active", streamMode);
+        d.streamLabel.textContent = streamMode ? "流式 · 开" : "流式";
+        setStatus(streamMode ? "已切换为流式对话模式。" : "已切换为普通对话模式。");
+      });
+
+      async function doChatStream(agentId, sessionId, message, onChunk, onDone) {
+        const url = `${apiBase}/api/v1/chat_stream`;
+        let res;
+        try {
+          res = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ agentId, userId, sessionId, message }),
+          });
+        } catch (err) {
+          if (isBackendDown(err)) popModal(err);
+          throw err;
+        }
+
+        if (!res.ok) {
+          const raw = await res.text();
+          const json = safeJson(raw);
+          throw new Error((json && (json.info || json.message)) || raw || `HTTP ${res.status}`);
+        }
+
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let fullText = "";
+        let buffer = "";
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          buffer += decoder.decode(value, { stream: true });
+          const parts = buffer.split(/(?<=\n)/);
+          buffer = "";
+
+          for (const part of parts) {
+            if (part.endsWith("\n")) {
+              const line = part.trimEnd();
+              if (line) {
+                fullText += line + "\n";
+                onChunk(fullText);
+              }
+            } else {
+              buffer = part;
+            }
+          }
+        }
+
+        if (buffer.trim()) {
+          fullText += buffer;
+          onChunk(fullText);
+        }
+
+        if (!fullText.trim()) throw new Error("引擎返回空内容");
+        onDone(fullText);
+        return fullText;
+      }
 
       async function createSession(agentId) {
         const resp = await apiFetch("/api/v1/create_session", {
@@ -642,7 +1043,9 @@
           body: JSON.stringify({ agentId, userId, sessionId, message }),
         });
         const data = ensureOk(resp);
-        return data && data.content ? String(data.content) : "（引擎返回空内容）";
+        return data && data.content
+          ? String(data.content)
+          : "（引擎返回空内容）";
       }
 
       d.msgInput.addEventListener("keydown", (e) => {
@@ -662,7 +1065,11 @@
         setStatus("");
 
         const agentId = d.agentSel.value || "";
-        if (!agentId) { setStatus("请先选择智能体。", "error"); d.agentSel.focus(); return; }
+        if (!agentId) {
+          setStatus("请先选择智能体。", "error");
+          d.agentSel.focus();
+          return;
+        }
 
         const msg = (d.msgInput.value || "").trim();
         if (!msg) return;
@@ -671,20 +1078,43 @@
         d.msgInput.style.height = "auto";
         setSending(true);
 
-        const agentLabel = d.agentSel.options[d.agentSel.selectedIndex].textContent || agentId;
-        const userEl = addBubble("user", msg, [`用户: ${userId}`, fmtTime(Date.now())]);
+        const agentLabel =
+          d.agentSel.options[d.agentSel.selectedIndex].textContent || agentId;
+        const userEl = addBubble("user", msg, [
+          `用户: ${userId}`,
+          fmtTime(Date.now()),
+        ]);
         const ncEl = addBubble("agent", "解析中…", [`智能体: ${agentLabel}`]);
 
         try {
           const sid = await createSession(agentId);
-          const reply = await doChat(agentId, sid, msg);
-          ncEl.bbl.textContent = reply;
-          ncEl.bbl.classList.remove("thinking");
-          const foot = document.createElement("div");
-          foot.className = "msg-foot";
-          foot.textContent = [`智能体: ${agentLabel}`, `会话: ${sid}`, fmtTime(Date.now())].join(" · ");
-          ncEl.bbl.appendChild(foot);
-          setStatus("");
+
+          if (streamMode) {
+            await doChatStream(
+              agentId, sid, msg,
+              (chunk) => {
+                ncEl.bbl.textContent = chunk;
+                ncEl.bbl.classList.remove("thinking");
+                scrollDown();
+              },
+              (full) => {
+                const foot = document.createElement("div");
+                foot.className = "msg-foot";
+                foot.textContent = [`智能体: ${agentLabel}`, `会话: ${sid}`, fmtTime(Date.now()), "流式"].join(" · ");
+                ncEl.bbl.appendChild(foot);
+              }
+            );
+            setStatus("");
+          } else {
+            const reply = await doChat(agentId, sid, msg);
+            ncEl.bbl.textContent = reply;
+            ncEl.bbl.classList.remove("thinking");
+            const foot = document.createElement("div");
+            foot.className = "msg-foot";
+            foot.textContent = [`智能体: ${agentLabel}`, `会话: ${sid}`, fmtTime(Date.now())].join(" · ");
+            ncEl.bbl.appendChild(foot);
+            setStatus("");
+          }
         } catch (err) {
           const errMsg = err && err.message ? err.message : "请求失败";
           ncEl.bbl.textContent = `执行失败\n\n${errMsg}`;
