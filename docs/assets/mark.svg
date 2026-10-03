@@ -5,24 +5,24 @@
       <stop offset="0" stop-color="#fbbf24"/><stop offset="0.55" stop-color="#f97316"/><stop offset="1" stop-color="#c2410c"/>
     </linearGradient>
     <linearGradient id="belly" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#ffe9c7"/>
+      <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#ffe0b0"/>
     </linearGradient>
   </defs>
   <circle cx="48" cy="48" r="46" fill="url(#sea)"/>
   <circle cx="48" cy="48" r="46" fill="none" stroke="#ffffff" stroke-opacity="0.18" stroke-width="2"/>
-<g>
-    <animateTransform attributeName="transform" type="translate" values="0 0; -16 0; 0 0" keyTimes="0;0.5;1" dur="3.6s" begin="0" repeatCount="indefinite"/>
-    <rect x="22" y="58" width="52" height="11" rx="5" fill="url(#belly)"/>
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0 0; 0 0; 0 0" keyTimes="0;0.5;1" dur="4.4s" begin="0" repeatCount="indefinite"/>
+    <path d="M48 62 l23 11 l-23 11 l-23 -11 z" fill="#8a3d08"/>
+    <path d="M48 55 l23 11 l-23 11 l-23 -11 z" fill="url(#belly)"/>
   </g>
-<g>
-    <animateTransform attributeName="transform" type="translate" values="0 0; 16 0; 0 0" keyTimes="0;0.5;1" dur="3.6s" begin="0.6" repeatCount="indefinite"/>
-    <rect x="28" y="44" width="40" height="11" rx="5" fill="url(#belly)"/>
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0 -8; 0 -24; 0 -8" keyTimes="0;0.5;1" dur="4.4s" begin="0.18" repeatCount="indefinite"/>
+    <path d="M48 62 l23 11 l-23 11 l-23 -11 z" fill="#8a3d08"/>
+    <path d="M48 55 l23 11 l-23 11 l-23 -11 z" fill="url(#belly)"/>
   </g>
-<g>
-    <animateTransform attributeName="transform" type="translate" values="0 0; -16 0; 0 0" keyTimes="0;0.5;1" dur="3.6s" begin="1.2" repeatCount="indefinite"/>
-    <rect x="34" y="30" width="28" height="11" rx="5" fill="url(#belly)"/>
-  </g>
-  <g fill="#ffffff" opacity="0.45">
-    <circle cx="27" cy="24" r="2.6"/><circle cx="34" cy="18" r="1.6"/><circle cx="22" cy="17" r="1.2"/>
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0 -16; 0 -47; 0 -16" keyTimes="0;0.5;1" dur="4.4s" begin="0.36" repeatCount="indefinite"/>
+    <path d="M48 62 l23 11 l-23 11 l-23 -11 z" fill="#8a3d08"/>
+    <path d="M48 55 l23 11 l-23 11 l-23 -11 z" fill="url(#belly)"/>
   </g>
 </svg>
