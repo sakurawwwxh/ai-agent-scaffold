@@ -11,15 +11,15 @@
   <circle cx="48" cy="48" r="46" fill="url(#sea)"/>
   <circle cx="48" cy="48" r="46" fill="none" stroke="#ffffff" stroke-opacity="0.18" stroke-width="2"/>
 <g>
-    <animateTransform attributeName="transform" type="translate" values="0 0; -12 0; 0 0" keyTimes="0;0.5;1" dur="3.6s" begin="0" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" type="translate" values="0 0; -16 0; 0 0" keyTimes="0;0.5;1" dur="3.6s" begin="0" repeatCount="indefinite"/>
     <rect x="22" y="58" width="52" height="11" rx="5" fill="url(#belly)"/>
   </g>
 <g>
-    <animateTransform attributeName="transform" type="translate" values="0 0; 12 0; 0 0" keyTimes="0;0.5;1" dur="3.6s" begin="0.6" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" type="translate" values="0 0; 16 0; 0 0" keyTimes="0;0.5;1" dur="3.6s" begin="0.6" repeatCount="indefinite"/>
     <rect x="28" y="44" width="40" height="11" rx="5" fill="url(#belly)"/>
   </g>
 <g>
-    <animateTransform attributeName="transform" type="translate" values="0 0; -12 0; 0 0" keyTimes="0;0.5;1" dur="3.6s" begin="1.2" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" type="translate" values="0 0; -16 0; 0 0" keyTimes="0;0.5;1" dur="3.6s" begin="1.2" repeatCount="indefinite"/>
     <rect x="34" y="30" width="28" height="11" rx="5" fill="url(#belly)"/>
   </g>
   <g fill="#ffffff" opacity="0.45">
