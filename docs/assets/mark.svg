@@ -7,9 +7,9 @@
     </linearGradient></defs>
   <circle cx="48" cy="48" r="46" fill="url(#sea)"/>
   <circle cx="48" cy="48" r="46" fill="none" stroke="#ffffff" stroke-opacity="0.18" stroke-width="2"/>
-<rect x="34" y="30" width="28" height="11" rx="5" fill="url(#belly)"/>
-<rect x="28" y="44" width="40" height="11" rx="5" fill="url(#belly)"/>
-<rect x="22" y="58" width="52" height="11" rx="5" fill="url(#belly)"/>
+<rect x="34" y="30" width="28" height="11" rx="5" fill="url(#belly)" opacity="0"><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="4s" begin="0" repeatCount="indefinite"/></rect>
+<rect x="28" y="44" width="40" height="11" rx="5" fill="url(#belly)" opacity="0"><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="4s" begin="0.25" repeatCount="indefinite"/></rect>
+<rect x="22" y="58" width="52" height="11" rx="5" fill="url(#belly)" opacity="0"><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.86;1" dur="4s" begin="0.5" repeatCount="indefinite"/></rect>
   <g fill="#ffffff" opacity="0.5">
     <circle cx="27" cy="26" r="2.6"/><circle cx="34" cy="20" r="1.6"/><circle cx="22" cy="19" r="1.2"/>
   </g>
